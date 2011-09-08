@@ -105,6 +105,7 @@
 }
 
 - (void)calculate {
+
 	if (!caption || [caption isEqualToString:@""]) {
 		activityRect = CGRectMake(p.margin, p.margin, activitySize.width, activitySize.height);
 		targetBounds = CGRectMake(0, 0, p.margin*2+activitySize.width, p.margin*2+activitySize.height);
@@ -121,12 +122,15 @@
 			captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(s.width-p.margin*2, 200) lineBreakMode:UILineBreakModeWordWrap];
 			targetBounds = CGRectMake(0, 0, s.width, s.height);
 		}
-		
+
 		captionRect = CGRectZero;
 		captionRect.size = captionSize;
 		float adjustment = 0;
 		CGFloat marginX = p.margin;
 		CGFloat marginY = p.margin;
+
+    CGSize imageSize = image.size;
+
 		if (!hasFixedSize) {
 			if (p.accessoryPosition == ATMHudAccessoryPositionTop || p.accessoryPosition == ATMHudAccessoryPositionBottom) {
 				if (progress > 0) {
@@ -217,7 +221,7 @@
 				activityRect = CGRectMake((targetBounds.size.width-activitySize.width)*0.5, marginY, activitySize.width, activitySize.height);
 				
 				imageRect = CGRectZero;
-				imageRect.origin.x = (targetBounds.size.width-image.size.width)*0.5;
+				imageRect.origin.x = (targetBounds.size.width-imageSize.width)*0.5;
 				imageRect.origin.y = marginY;
 				imageRect.size = image.size;
 				
