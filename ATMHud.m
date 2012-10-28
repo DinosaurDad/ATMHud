@@ -77,6 +77,7 @@
 }
 
 - (void)dealloc {
+	__view.p = nil;
 	[sound release];
 	[__view release];
 	[displayQueue release];
@@ -253,13 +254,13 @@
 #pragma mark Controlling
 - (void)show {
     if (autocenter) {
-        CGRect svb = self.view.superView.bounds;
+        CGRect svb = self.view.superview.bounds;
         self.view.center = CGPointMake(svb.origin.x + svb.size.width / 2,
                                        svb.origin.y + svb.size.height / 2);
     }
     
     if (autoBringToFront)
-        [self.superView bringSubviewToFront:self.view];
+        [self.view.superview bringSubviewToFront:self.view];
     
 	[__view show];
 }
